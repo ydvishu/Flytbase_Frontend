@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 
 const JsonInputForm = ({setUserProvidedData}) => {
   const [jsonData, setJsonData] = useState('');
@@ -13,12 +13,15 @@ const JsonInputForm = ({setUserProvidedData}) => {
       const parsedJson = JSON.parse(jsonData);
       console.log(parsedData)
       setParsedData(parsedJson);
-      setUserProvidedData(parsedData);
     } catch (error) {
       console.error('Error parsing JSON:', error.message);
       setParsedData(null);
     }
   };
+
+  useEffect(()=>{
+    setUserProvidedData(parsedData)
+  },[parsedData])
 
   return (
     <div className='flex gap-4 p-3'>
@@ -26,15 +29,16 @@ const JsonInputForm = ({setUserProvidedData}) => {
         className='p-2'
         value={jsonData}
         onChange={handleInputChange}
-        placeholder="Enter JSON data here"
+        placeholder="Enter User data... (Use data provided in readme file)"
         rows={1}
         cols={40}
       />
       <br />
       
-      <button className='bg-pink-600 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium'
+      <button className='bg-pink-600 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium text-white'
             onClick={handleParseJson}
-            >Parse JSON</button>
+            >Upload Data</button>
+      
       <br />
       {/* {parsedData && (
         <div>

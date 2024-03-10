@@ -18,15 +18,13 @@ const ArrayInputForm = () => {
   return (
     <div>
       <label>
-        Enter Array (comma-separated values):
+        Enter Array
         <input type="text" value={inputValue} onChange={handleInputChange} />
       </label>
-      <button onClick={handleAddToArray}>Add to Array</button>
+      <button className='bg-pink-600 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium' onClick={handleAddToArray}>Add to Array</button>
+      <button className='bg-pink-600 px-6 py-2 rounded-md h-10 shadow-md my-6 font-medium' onClick={()=> console.log(arrayData)}>Console Log</button>
 
-      <div>
-        <h2>Array Data:</h2>
-        <pre>{JSON.stringify(arrayData, null, 2)}</pre>
-      </div>
+      
     </div>
   );
 };
